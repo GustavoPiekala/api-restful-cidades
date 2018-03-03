@@ -1,30 +1,38 @@
-package com.cidades.model;
+package com.cities.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Cidade {
+public class City {
 
 	@Id
 	private Long ibgeId;
 	
+	@NotBlank
 	private String uf;
 	
+	@NotBlank
 	private String name;
 	
 	private boolean capital;
 	
+	@NotBlank
 	private String longitude;
 	
+	@NotBlank
 	private String latitude;
 	
+	@NotBlank
 	private String noAccents;
 	
 	private String alternativeNames;
 	
+	@NotBlank
 	private String microregion;
 	
+	@NotBlank
 	private String mesoregion;
 	
 	public Long getIbgeId() {

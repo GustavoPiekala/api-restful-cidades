@@ -1,12 +1,12 @@
-package com.cidades;
+package com.cities;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CidadesApiApplication {
+public class CitiesApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CidadesApiApplication.class, args);
+		SpringApplication.run(CitiesApiApplication.class, args);
 	}
 }
