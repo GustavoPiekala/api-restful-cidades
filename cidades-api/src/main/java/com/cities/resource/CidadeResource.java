@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cities.helper.ImportCsvCities;
 import com.cities.model.CitiesByState;
 import com.cities.model.City;
+import com.cities.model.TotalData;
+import com.cities.model.TotalDifferentData;
 import com.cities.repository.CityRepository;
 
 @RestController
@@ -185,4 +187,102 @@ public class CidadeResource {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/capital/{capital}")
+	public List<City> searchCitiesByCapital(@PathVariable boolean capital){
+
+		return cityRepository.searchCitiesByCapital(capital);
+		
+	}
+	
+	@GetMapping("/longitude/{longitude}")
+	public List<City> searchCitiesByLongitude(@PathVariable String longitude){
+
+		return cityRepository.searchCitiesByLongitude(longitude);
+		
+	}
+	
+	@GetMapping("/latitude/{latitude}")
+	public List<City> searchCitiesByLatitude(@PathVariable String latitude){
+
+		return cityRepository.searchCitiesByLatitude(latitude);
+		
+	}
+	
+	@GetMapping("/noAccents/{noAccents}")
+	public List<City> searchCitiesByNoAccents(@PathVariable String noAccents){
+
+		return cityRepository.searchCitiesByNoAccents(noAccents);
+		
+	}
+	
+	@GetMapping("/alternativeNames/{alternativeNames}")
+	public List<City> searchCitiesByAlternativeNames(@PathVariable String alternativeNames){
+
+		return cityRepository.searchCitiesByAlternativeNames(alternativeNames);
+		
+	}
+	
+	@GetMapping("/microregion/{microregion}")
+	public List<City> searchCitiesByMicroregion(@PathVariable String microregion){
+
+		return cityRepository.searchCitiesByMicroregion(microregion);
+		
+	}
+	
+	@GetMapping("/mesoregion/{mesoregion}")
+	public List<City> searchCitiesByMesoregion(@PathVariable String mesoregion){
+
+		return cityRepository.searchCitiesByMesoregion(mesoregion);
+		
+	}
+	
+	@GetMapping("/totalDifferentData")
+	public TotalDifferentData getTotalDifferentData() {
+		
+		List<String> ufOrderedList = cityRepository.getUfOrdered();
+		
+		String oldUf = ufOrderedList.get(0);
+		int oldIndex = 0;
+		int dataCounter = 0;
+		
+		for (int i = 0; i < ufOrderedList.size(); i++) {
+			
+			if (i > 0) {
+				oldUf = ufOrderedList.get(oldIndex);
+				oldIndex++;
+			}
+			
+			if (!oldUf.equals(ufOrderedList.get(i)) || (i == ufOrderedList.size()-1)) {
+				dataCounter++;
+			}
+			
+		}
+		
+		TotalDifferentData totalDifferentData = new TotalDifferentData();
+		totalDifferentData.setTotalDifferentData(dataCounter);
+		
+		return totalDifferentData;
+		
+	}
+	
+	@GetMapping("/totalData")
+	public TotalData getTotalData() {
+		
+		List<String> ufOrdered = cityRepository.getUfOrdered();
+		
+		int dataCounter = 0;
+		
+		for (int i = 0; i <= ufOrdered.size(); i++) {
+			dataCounter++;
+		}
+		
+		TotalData totalData = new TotalData();
+		totalData.setTotalData(dataCounter);
+		
+		return totalData;
+		
+	}
+	
+	
 }
