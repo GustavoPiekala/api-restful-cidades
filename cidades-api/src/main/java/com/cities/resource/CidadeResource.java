@@ -172,10 +172,17 @@ public class CidadeResource {
 		return "Cities imported with success!";
 	}
 	
-	@DeleteMapping()
-	public City deleteCity(@RequestBody City city) {
+	@DeleteMapping("/delete/{ibgeId}")
+	public ResponseEntity<Void> deleteCity(@PathVariable Long ibgeId) {
+		
+		City city = cityRepository.searchCityByIbgeCode(ibgeId);
+		
+		if (city == null) {
+			return ResponseEntity.notFound().build();
+		}
 		
 		cityRepository.delete(city);
-		return city;
+		
+		return ResponseEntity.noContent().build();
 	}
 }
