@@ -13,7 +13,7 @@ public class ImportCsvCities {
 
 	public List<City> readCsvFile() {
 
-		String csvFile = "C:\\Users\\Gustavo\\Desktop\\Cidades\\Trabalho Java - Cidades.csv";
+		String csvFile = "Trabalho Java - Cidades.csv";
 
 		BufferedReader csvContent = null;
 
@@ -37,8 +37,8 @@ public class ImportCsvCities {
 					city.setUf(cityArray[1]);
 					city.setName(cityArray[2]);
 					city.setCapital(cityArray[3].equals("") ? false : true);
-					city.setLongitude(cityArray[4]);
-					city.setLatitude(cityArray[5]);
+					city.setLongitude(Double.parseDouble(cityArray[4]));
+					city.setLatitude(Double.parseDouble(cityArray[5]));
 					city.setNoAccents(cityArray[6]);
 					city.setAlternativeNames(cityArray[7].equals("") ? "" : cityArray[7]);
 					city.setMicroregion(cityArray[8]);

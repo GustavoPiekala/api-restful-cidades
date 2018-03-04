@@ -3,6 +3,7 @@ package com.cities.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class City {
@@ -18,11 +19,11 @@ public class City {
 	
 	private boolean capital;
 	
-	@NotBlank
-	private String longitude;
+	@NotNull
+	private double longitude;
 	
-	@NotBlank
-	private String latitude;
+	@NotNull
+	private double latitude;
 	
 	@NotBlank
 	private String noAccents;
@@ -67,19 +68,19 @@ public class City {
 		this.capital = capital;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 	
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 	
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 	
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 	

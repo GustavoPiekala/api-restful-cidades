@@ -1,0 +1,501 @@
+{
+	"info": {
+		"name": "Cities Project Request Tests",
+		"_postman_id": "06894af2-3a2c-8e4f-280b-09e26f8fd877",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Requests",
+			"description": "All the Get Requests are inside this folder",
+			"item": [
+				{
+					"name": "Get By Filters (Task 9)",
+					"description": "Return the cities, according to selected filter",
+					"item": [
+						{
+							"name": "http://localhost:8080/cities/capital/true",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/capital/true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"capital",
+										"true"
+									]
+								},
+								"description": "IF /true, then will return all the cities that are capitals.\nIF /false, then will return all the cities that are not capitals."
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/longitude/-61",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/longitude/-61",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"longitude",
+										"-61"
+									]
+								},
+								"description": "Return all the cities wich start with \"x\" longitude "
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/latitude/-3.05",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/latitude/-3.05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"latitude",
+										"-3.05"
+									]
+								},
+								"description": "Return all the cities that start with \"x\" latitude"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/noAccents/b",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/noAccents/t",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"noAccents",
+										"t"
+									]
+								},
+								"description": "Return all the cities that start with the \"x' no Accents "
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/alternativeNames/a",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/alternativeNames/a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"alternativeNames",
+										"a"
+									]
+								},
+								"description": "Return all the cities that start with \"x\" alternative name"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/microregion/n",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/microregion/n",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"microregion",
+										"n"
+									]
+								},
+								"description": "Return all the cities that start with \"x\" microregion"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/cities/mesoregion/s",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/cities/mesoregion/s",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"cities",
+										"mesoregion",
+										"s"
+									]
+								},
+								"description": "Return all the cities that start with \"x\" mesoregion"
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0995f3cc-a3ff-4bce-a6ed-fb386251979f",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "be01dbb1-5357-427e-a22b-7bdc0a2df292",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Import the Cities CSV file To DataBase(Task 1) ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/citiesCsv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"citiesCsv"
+							]
+						},
+						"description": "Import Cities from Csv File"
+					},
+					"response": []
+				},
+				{
+					"name": "List All the Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities"
+							]
+						},
+						"description": "Return all the cities imported from CSV file"
+					},
+					"response": []
+				},
+				{
+					"name": "List All the Capitals Ordered By Name (Task 2)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/capitals",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"capitals"
+							]
+						},
+						"description": "Return all the Capitals from the CSV file Ordered By Name"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the States with the major and minor number of cities (Task 3)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/minorMajorCitiesNumber",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"minorMajorCitiesNumber"
+							]
+						},
+						"description": "Return the States with the major and minor number of cities from CSV file"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the number of the cities per state (Task 4)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/numberOfCitiesPerState",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"numberOfCitiesPerState"
+							]
+						},
+						"description": "Return the number of the cities per state from CSV file"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the city search by IbgeId (Task 5)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/ibgeId/4202404",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"ibgeId",
+								"4202404"
+							]
+						},
+						"description": "Return the city, search by IbgeId"
+					},
+					"response": []
+				},
+				{
+					"name": "Return all the cities searched by State (Task 6)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/state/sc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"state",
+								"sc"
+							]
+						},
+						"description": "Return all the cities searched by State"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the number of different data (Task 10)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/totalDifferentData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"totalDifferentData"
+							]
+						},
+						"description": "Return the number of different data from CSV file"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the total Data (Task 11)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/totalData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"totalData"
+							]
+						},
+						"description": "Return the total Data from CSV file"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the major distance between the cities (Task 12)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/cities/majorDistance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"majorDistance"
+							]
+						},
+						"description": "Return the major distance between the cities"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Insert a city in DataBase (Task 7)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"ibgeId\": \"123\",\n\t\"uf\": \"FF\",\n\t\"name\": \"Teste\",\n\t\"capital\": 1,\n\t\"longitude\": \"-123123\",\n\t\"latitude\": \"-341241\",\n\t\"noAccents\": \"Teste1\",\n\t\"alternativeNames\": \"Teste2\",\n\t\"microregion\": \"Teste3\",\n\t\"mesoregion\": \"Teste4\"\n\t\n\t\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cities"
+					]
+				},
+				"description": "Insert a city in DataBase"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a city in DataBase (Task 8)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/cities/delete/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cities",
+						"delete",
+						"123"
+					]
+				},
+				"description": "Delete a city in DataBase"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8219eb1f-fb4f-439c-985b-5c4aada2dc1b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cead2f05-c118-4464-86d8-be4ec539c3a5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

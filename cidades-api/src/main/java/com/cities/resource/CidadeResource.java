@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cities.helper.CalculateDistanceInKm;
 import com.cities.helper.ImportCsvCities;
 import com.cities.model.CitiesByState;
 import com.cities.model.City;
+import com.cities.model.MajorDistance;
 import com.cities.model.TotalData;
 import com.cities.model.TotalDifferentData;
 import com.cities.repository.CityRepository;
@@ -34,23 +36,41 @@ public class CidadeResource {
 		return cityRepository.findAll();
 	}
 	
+	//Task 1
+	@GetMapping("/citiesCsv")
+	public String importCitiesCsv() {
+		
+		ImportCsvCities csvCities = new ImportCsvCities(); 
+		
+		List<City> citiesCsvList = csvCities.readCsvFile();
+		
+		for (City city : citiesCsvList) {
+			cityRepository.save(city);
+		}
+		
+		return "Cities imported with success!";
+	}
+	
+	//Task 2
 	@GetMapping("/capitals")
 	public List<City> getOnlyCapitals() {
 
 		return cityRepository.getCapitalList();
 	}
+
+	//Task 3
+	@GetMapping("/minorMajorCitiesNumber")
+	public List<CitiesByState> getMinorMajorCitiesNumber(){
+		
+		return getMinorMajorCitiesNumberList();
+	}
 	
+	//Task 4
 	@GetMapping("/numberOfCitiesPerState")
 	public List<CitiesByState> getNumberOfCitiesPerState(){
 		
 		return getCityListPerState();
 		
-	}
-
-	@GetMapping("/minorMajorCitiesNumber")
-	public List<CitiesByState> getMinorMajorCitiesNumber(){
-		
-		return getMinorMajorCitiesNumberList();
 	}
 	
 	private List<CitiesByState> getMinorMajorCitiesNumberList() {
@@ -135,6 +155,7 @@ public class CidadeResource {
 		
 	}
 
+	//Task 5
 	@GetMapping("/ibgeId/{ibgeId}")
 	public ResponseEntity<City> searchCityByIbge(@PathVariable Long ibgeId){
 		
@@ -148,32 +169,21 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 6
 	@GetMapping("/state/{uf}")
 	public List<City> searchCitiesByState(@PathVariable String uf){
 		
 		return cityRepository.searchCitiesByState(uf);
 	}
 	
+	//Task 7
 	@PostMapping
 	public City saveNewCity(@RequestBody @Valid City city) {
 		
 		return cityRepository.save(city);
 	}
-	
-	@GetMapping("/citiesCsv")
-	public String importCitiesCsv() {
-		
-		ImportCsvCities csvCities = new ImportCsvCities(); 
-		
-		List<City> citiesCsvList = csvCities.readCsvFile();
-		
-		for (City city : citiesCsvList) {
-			cityRepository.save(city);
-		}
-		
-		return "Cities imported with success!";
-	}
-	
+
+	//Task 8
 	@DeleteMapping("/delete/{ibgeId}")
 	public ResponseEntity<Void> deleteCity(@PathVariable Long ibgeId) {
 		
@@ -188,6 +198,7 @@ public class CidadeResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	//Task 9
 	@GetMapping("/capital/{capital}")
 	public List<City> searchCitiesByCapital(@PathVariable boolean capital){
 
@@ -195,20 +206,23 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 9
 	@GetMapping("/longitude/{longitude}")
-	public List<City> searchCitiesByLongitude(@PathVariable String longitude){
+	public List<City> searchCitiesByLongitude(@PathVariable double longitude){
 
 		return cityRepository.searchCitiesByLongitude(longitude);
 		
 	}
 	
+	//Task 9
 	@GetMapping("/latitude/{latitude}")
-	public List<City> searchCitiesByLatitude(@PathVariable String latitude){
+	public List<City> searchCitiesByLatitude(@PathVariable double latitude){
 
 		return cityRepository.searchCitiesByLatitude(latitude);
 		
 	}
 	
+	//Task 9
 	@GetMapping("/noAccents/{noAccents}")
 	public List<City> searchCitiesByNoAccents(@PathVariable String noAccents){
 
@@ -216,6 +230,7 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 9
 	@GetMapping("/alternativeNames/{alternativeNames}")
 	public List<City> searchCitiesByAlternativeNames(@PathVariable String alternativeNames){
 
@@ -223,6 +238,7 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 9
 	@GetMapping("/microregion/{microregion}")
 	public List<City> searchCitiesByMicroregion(@PathVariable String microregion){
 
@@ -230,6 +246,7 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 9
 	@GetMapping("/mesoregion/{mesoregion}")
 	public List<City> searchCitiesByMesoregion(@PathVariable String mesoregion){
 
@@ -237,6 +254,7 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 10
 	@GetMapping("/totalDifferentData")
 	public TotalDifferentData getTotalDifferentData() {
 		
@@ -266,6 +284,7 @@ public class CidadeResource {
 		
 	}
 	
+	//Task 11
 	@GetMapping("/totalData")
 	public TotalData getTotalData() {
 		
@@ -284,5 +303,57 @@ public class CidadeResource {
 		
 	}
 	
-	
+	//Task 12
+	@GetMapping("/majorDistance")
+	public MajorDistance getGreaterDistance() {
+		
+		return getMajorDistance();
+		
+	}
+
+	private MajorDistance getMajorDistance() {
+		
+		List<City> cityList = cityRepository.findAll();
+		
+		int k = 0;
+		int j = 1;
+
+		int majorDistance = 0;
+		
+		do {
+			/*Quando j atingir o tamanho do array, ele é zerado para começar a
+			percorrer novamente até que k atinja o tamanho máximo do array*/
+			if (j == cityList.size()) {
+				
+				j = 0;
+				k++;
+				
+			}else {
+				//Condição para k não comparar com ele mesmo
+				if (k != j) {
+					
+					double firLongitude = cityList.get(k).getLongitude();
+					double firLatitude = cityList.get(k).getLatitude();
+					double secLongitude = cityList.get(j).getLongitude();
+					double secLatitude = cityList.get(j).getLatitude();
+					
+					int resultDistance = CalculateDistanceInKm.calculateDistanceInKm(firLongitude, firLatitude, secLongitude, secLatitude);
+					
+					if (resultDistance > majorDistance) {
+						majorDistance = resultDistance;
+					}
+				}
+				
+				j++;
+			}
+			
+		}while(k < cityList.size());
+			
+			MajorDistance greaterDistance = new MajorDistance();
+			greaterDistance.setMajorDistance(majorDistance);
+			
+			return greaterDistance;
+
+		}
+
 }

@@ -32,22 +32,22 @@ public interface CityRepository extends JpaRepository<City, Long>{
 	@Query("select c from City c where c.capital like ?1")
 	public List<City> searchCitiesByCapital(boolean capital);
 	
-	@Query("select c from City c where c.longitude like ?1%")
-	public List<City> searchCitiesByLongitude(String longitude);
+	@Query("select c from City c where c.longitude like ?1 || '%'")
+	public List<City> searchCitiesByLongitude(double longitude);
 	
-	@Query("select c from City c where c.latitude like ?1%")
-	public List<City> searchCitiesByLatitude(String latitude);
+	@Query("select c from City c where c.latitude like ?1 || '%'")
+	public List<City> searchCitiesByLatitude(double latitude);
 	
-	@Query("select c from City c where c.noAccents like ?1%")
+	@Query("select c from City c where UPPER(c.noAccents) like UPPER(?1) || '%'")
 	public List<City> searchCitiesByNoAccents(String noAccents);
 	
-	@Query("select c from City c where c.alternativeNames like ?1%")
+	@Query("select c from City c where UPPER(c.alternativeNames) like UPPER(?1) || '%'")
 	public List<City> searchCitiesByAlternativeNames(String alternativeNames);
 	
-	@Query("select c from City c where c.microregion like ?1%")
+	@Query("select c from City c where UPPER(c.microregion) like UPPER(?1) || '%'")
 	public List<City> searchCitiesByMicroregion(String microregion);
 	
-	@Query("select c from City c where c.mesoregion like ?1%")
+	@Query("select c from City c where UPPER(c.mesoregion) like UPPER(?1) || '%'")
 	public List<City> searchCitiesByMesoregion(String mesoregion);
 	
 }
